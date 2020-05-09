@@ -1,0 +1,16 @@
+app:
+  datasource:
+    jdbc-url: jdbc:postgresql://localhost:5432/cocktaildb
+    username: postgres
+    password: postgres
+    pool-size: 30
+
+    jpa:
+      hibernate:
+        ddl-auto: update
+      properties:
+        hibernate:
+          jdbc:
+            lob:
+              non_contextual_creation: true
+      databasePlatform: "org.hibernate.dialect.PostgreSQLDialect"

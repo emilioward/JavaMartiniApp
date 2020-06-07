@@ -3,14 +3,17 @@ package com.example.JavaMartiniApp.Controllers;
 import com.example.JavaMartiniApp.Model.Cocktail;
 import com.example.JavaMartiniApp.Services.CocktailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.UUID;
 
 @RequestMapping("api/V1/cocktail")
 @RestController
+@CrossOrigin("*")
 public class GetCocktailController {
 
     private final CocktailService cocktailService;
@@ -23,6 +26,11 @@ public class GetCocktailController {
     @PostMapping
     public void addCocktail(@RequestBody @Valid @NotNull Cocktail cocktail) {
         cocktailService.addCocktail(cocktail);
+    }
+
+    @GetMapping(path = "/")
+    public List<Cocktail> getAllCocktails() {
+        return cocktailService.selectAllCocktails();
     }
 
     @GetMapping(path = "/{id}")

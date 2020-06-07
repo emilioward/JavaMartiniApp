@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+  background: linear-gradient(to right, #ff9966, #ff5e62);
+  max-height: 100%;
+  min-height: 100vh;
+}
+
+.AppTitle {
+  padding-top: 10px;
+  color: black;
+}
+
+.Grid {
+  display: flex;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+}

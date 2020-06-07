@@ -1,12 +1,14 @@
 package com.example.JavaMartiniApp.Interface;
 
 import com.example.JavaMartiniApp.Model.Cocktail;
+import org.apache.juli.logging.Log;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 @Repository("MyDAO")
 public class CocktailDataAccessService implements CocktailInterface {
@@ -20,7 +22,7 @@ public class CocktailDataAccessService implements CocktailInterface {
 
     @Override
     public int insertCocktail(Cocktail cocktail) {
-        final String sql = "INSERT INTO cocktail (id, name) VALUES (?, ?)";
+        final String sql = ("INSERT INTO cocktail (id, name) VALUES (?, ?)");
         return jdbcTemplate.update(sql, cocktail.getId(), cocktail.getName());
     }
 

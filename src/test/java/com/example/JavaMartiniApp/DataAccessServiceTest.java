@@ -2,7 +2,7 @@ package com.example.JavaMartiniApp;
 
 import com.example.JavaMartiniApp.Interface.CocktailDataAccessService;
 import com.example.JavaMartiniApp.Model.Cocktail;
-import org.assertj.core.api.Assertions;
+import org.junit.Assert;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +17,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.testcontainers.containers.PostgreSQLContainer;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import static io.restassured.RestAssured.when;
 
@@ -50,18 +52,31 @@ public class DataAccessServiceTest {
     }
 
     @Test
-    public void TestGetAllCocktailsInsideDatabase() {
-        List<Cocktail> all = cocktailDataAccessService.selectAllCocktails();
-        Assertions.assertThat(all.get(0).getName()).isEqualTo("TestMartini");
+    public void TestDefaultCocktailIsInsideDatabase() {
+        List<Cocktail> defaultCocktail = cocktailDataAccessService.selectAllCocktails();
+        Assert.assertEquals("TestMartini", defaultCocktail.get(0).getName());
+        Assert.assertEquals("eb274988-381c-4714-af6a-6be609c4cdc8", defaultCocktail.get(0).getId().toString());
+    }
+
+
+    @Test
+    public void TestInsertAndDeleteCocktail() {
+        UUID foundId = null;
+        UUID generatedTestId = UUID.randomUUID();
+        cocktailDataAccessService.insertCocktail(new Cocktail(generatedTestId, "IntegrationTestMockito400"));
+        Optional<Cocktail> testData = cocktailDataAccessService.selectCocktailById(generatedTestId);
+        if(testData.isPresent()){
+            foundId = testData.get().getId();
+        }
+        Assert.assertEquals(generatedTestId, foundId);
+        cocktailDataAccessService.deleteCocktailById(generatedTestId); // Data cleanup
     }
 
     @Test
-    public void TestGetHomepageReturns200() {
-
+    public void TestGetDataReturns200() {
         when().
-                get(baseUrl + "/home").
+                get(baseUrl + "/").
                 then()
                 .statusCode(200);
     }
-
 }

@@ -11,17 +11,17 @@ import java.util.List;
 @Controller
 public class GetHomepage {
 
-    private final CocktailService cocktailService;
+//    private final CocktailService cocktailService;
 
-    public GetHomepage(CocktailService cocktailService) {
-        this.cocktailService = cocktailService;
-    }
+//    public GetHomepage(CocktailService cocktailService) {
+//        this.cocktailService = cocktailService;
+//    }
 
 
-    @GetMapping(path = "/home")
-    public String getAllCocktails(Model model) {
-        List<Cocktail> cocktails = cocktailService.selectAllCocktails();
-        model.addAttribute("cocktailData", cocktails);
-        return "index";
-    }
+//    @GetMapping(path = "/home")
+//    public String getAllCocktails(Model model) {
+//        List<Cocktail> cocktails = cocktailService.selectAllCocktails();
+//        model.addAttribute("cocktailData", cocktails);
+//        return "index";
+//    }
 }

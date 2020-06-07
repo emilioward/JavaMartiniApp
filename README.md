@@ -3,6 +3,7 @@
 # Tech stack used
 - Java
 - SpringBoot
+- JDBC (Java database connectivity)
 - Flyway (DB Migrations)
 - Docker & Docker-compose
 - Postgres

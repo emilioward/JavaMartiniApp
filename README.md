@@ -7,4 +7,5 @@
 - Flyway (DB Migrations)
 - Docker & Docker-compose
 - Postgres
-- Thymeleaf templates
+- React.js (Frontend view) 
+- Axios with React (HTTP Requests)
